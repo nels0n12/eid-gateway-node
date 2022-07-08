@@ -3,8 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
-const cors = require('cors')
-
+const cors = require('cors');
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -13,19 +12,19 @@ const limiter = rateLimit({
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-
+const index = require('./routes/index');
 const verify = require('./routes/verify');
 const validate = require('./routes/validate');
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 // app.use(limiter)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser())
 
-app.use('/validate', validate);
+app.use('/', index);
 app.use('/verify', verify);
+app.use('/validate', validate);
 
 module.exports = app;

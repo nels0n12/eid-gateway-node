@@ -9,7 +9,7 @@ router.post('/', function (req, res, next) {
 
     const headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'KLBzNwGVZMRF9c65MOMV7Cl8rhIMTu4z'
+        'SecretKey': 'KLBzNwGVZMRF9c65MOMV7Cl8rhIMTu4z'
     }
 
     axios.get('http://168.167.72.220/validate/' + omang, { headers: headers })
